@@ -52,7 +52,7 @@ public class CuentaController {
 
 
 
-    @GetMapping("/cliente/{dni}/all}")
+    @GetMapping("/cliente/{dni}/all")
     @ResponseStatus(HttpStatus.OK)
     public Flux<Cuenta> findAllChile(@PathVariable String dni) {
         Flux<Cuenta> cuentasChile = webChile.get().uri("/cliente/{dni}", dni)
@@ -79,7 +79,7 @@ public class CuentaController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<Cuenta> createCuenta(@RequestBody Cuenta cuentaEntity){
-        String clienteId = cuentaEntity.getCliente();
+        String clienteId = cuentaEntity.getClienteDNI();
         cuentaEntity.setSaldo(0);
         cuentaEntity.setBanco("Banco de Bolivia");
         return webMsCliente.get().uri("/{id}", clienteId)

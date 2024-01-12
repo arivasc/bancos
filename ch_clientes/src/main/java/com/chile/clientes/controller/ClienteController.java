@@ -32,9 +32,9 @@ public class ClienteController {
         return clienteService.findAll();
     }
 
-    @GetMapping("/{id}")
-    public Mono<ResponseEntity<Object>> getCliente(@PathVariable String id){
-        return clienteService.findById(id)
+    @GetMapping("/{dni}")
+    public Mono<ResponseEntity<Object>> getCliente(@PathVariable String dni){
+        return clienteService.findByDNI(dni)
         .map(cliente -> ResponseEntity.ok((Object)cliente))
         .switchIfEmpty(Mono.just(ResponseEntity
         .status(HttpStatus.NOT_FOUND)

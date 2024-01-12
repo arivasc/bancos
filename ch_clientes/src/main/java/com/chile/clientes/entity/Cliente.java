@@ -9,7 +9,7 @@ public class Cliente {
     
     @Id
     private String id;
-    private String dni;
+    private String DNI;
     private String nombre;
     private String apellido;
     

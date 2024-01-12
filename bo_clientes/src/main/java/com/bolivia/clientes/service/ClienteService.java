@@ -26,5 +26,9 @@ public class ClienteService {
     public Mono<Cliente> createCliente(Cliente cliente) {
         return clienteRepository.save(cliente);
     }
+
+    public Mono<Cliente> findByDNI(String dni) {
+        return clienteRepository.findByDNI(dni);
+    }
     
 }
