@@ -1,0 +1,163 @@
+version: '3.9'
+
+services:
+
+  ch_banco_app:
+    container_name: ch-banco-app
+    image: ch-banco-app:1.0.0
+    build:
+      context: .
+      dockerfile: ch_banco/dockerfile
+    ports:
+      - 8093:8080
+    environment:
+      - MONGODB_URI=mongodb://ch_db:27017/ch_db
+      - MONGODB_USERNAME=mongo
+      - MONGODB_PASSWORD=mongo
+    depends_on:
+      - ch_db
+  ch_clientes_app:
+    container_name: ch-clientes-app
+    image: ch-clientes-app:1.0.0
+    build:
+      context: .
+      dockerfile: ch_clientes/dockerfile
+    ports:
+      - 8091:8080
+    environment:
+      - MONGODB_URI=mongodb://ch_db:27017/ch_db
+      - MONGODB_USERNAME=mongo
+      - MONGODB_PASSWORD=mongo
+    depends_on:
+      - ch_db
+  ch_cuentas_app:
+    container_name: ch-cuentas-app
+    image: ch-cuentas-app:1.0.0
+    build:
+      context: .
+      dockerfile: ch_cuentas/dockerfile
+    ports:
+      - 8092:8080
+    environment:
+      - MONGODB_URI=mongodb://ch_db:27017/ch_db
+      - MONGODB_USERNAME=mongo
+      - MONGODB_PASSWORD=mongo
+    depends_on:
+      - ch_db
+  ch_db:
+    container_name: ch_db
+    image: mongo
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_USERNAME: mongo
+      MONGO_PASSWORD: mongo
+      MONGO_DB: ch_db
+
+######################################################################################################
+
+  bo_banco_app:
+    container_name: bo-banco-app
+    image: bo-banco-app:1.0.0
+    build:
+      context: .
+      dockerfile: bo_banco/dockerfile
+    ports:
+      - 8053:8080
+    environment:
+      - MONGODB_URI=mongodb://bo_db:27017/bo_db
+      - MONGODB_USERNAME=mongo
+      - MONGODB_PASSWORD=mongo
+    depends_on:
+      - bo_db
+  bo_clientes_app:
+    container_name: bo-clientes-app
+    image: bo-clientes-app:1.0.0
+    build:
+      context: .
+      dockerfile: bo_clientes/dockerfile
+    ports:
+      - 8051:8080
+    environment:
+      - MONGODB_URI=mongodb://bo_db:27017/bo_db
+      - MONGODB_USERNAME=mongo
+      - MONGODB_PASSWORD=mongo
+    depends_on:
+      - bo_db
+  bo_cuentas_app:
+    container_name: bo-cuentas-app
+    image: bo-cuentas-app:1.0.0
+    build:
+      context: .
+      dockerfile: bo_cuentas/dockerfile
+    ports:
+      - 8052:8080
+    environment:
+      - MONGODB_URI=mongodb://bo_db:27017/bo_db
+      - MONGODB_USERNAME=mongo
+      - MONGODB_PASSWORD=mongo
+    depends_on:
+      - bo_db
+  bo_db:
+    container_name: bo_db
+    image: mongo
+    ports:
+      - 27027:27017
+    environment:
+      MONGO_USERNAME: mongo
+      MONGO_PASSWORD: mongo
+      MONGO_DB: bo_db
+
+######################################################################################################
+
+  pe_banco_app:
+    container_name: pe-banco-app
+    image: pe-banco-app:1.0.0
+    build:
+      context: .
+      dockerfile: pe_banco/dockerfile
+    ports:
+      - 8073:8080
+    environment:
+      - MONGODB_URI=mongodb://pe_db:27017/pe_db
+      - MONGODB_USERNAME=mongo
+      - MONGODB_PASSWORD=mongo
+    depends_on:
+      - pe_db
+  pe_clientes_app:
+    container_name: pe-clientes-app
+    image: pe-clientes-app:1.0.0
+    build:
+      context: .
+      dockerfile: pe_clientes/dockerfile
+    ports:
+      - 8071:8080
+    environment:
+      - MONGODB_URI=mongodb://pe_db:27017/pe_db
+      - MONGODB_USERNAME=mongo
+      - MONGODB_PASSWORD=mongo
+    depends_on:
+      - pe_db
+  pe_cuentas_app:
+    container_name: pe-cuentas-app
+    image: pe-cuentas-app:1.0.0
+    build:
+      context: .
+      dockerfile: pe_cuentas/dockerfile
+    ports:
+      - 8072:8080
+    environment:
+      - MONGODB_URI=mongodb://pe_db:27017/pe_db
+      - MONGODB_USERNAME=mongo
+      - MONGODB_PASSWORD=mongo
+    depends_on:
+      - pe_db
+  pe_db:
+    container_name: pe_db
+    image: mongo
+    ports:
+      - 27037:27017
+    environment:
+      MONGO_USERNAME: mongo
+      MONGO_PASSWORD: mongo
+      MONGO_DB: pe_db
