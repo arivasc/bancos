@@ -46,16 +46,16 @@ public class CuentaController {
 
     @GetMapping("/cliente/{dni}")
     @ResponseStatus(HttpStatus.OK)
-    public Flux<Cuenta> findAllByCliente(@PathVariable String dni) {
+    public Flux<Cuenta> findAllByClienteDNI(@PathVariable String dni) {
         return cuentaService.findAllByClienteDNI(dni);
     }
 
     @GetMapping("/cliente/{dni}/all}")
     @ResponseStatus(HttpStatus.OK)
     public Flux<Cuenta> findAllChile(@PathVariable String dni) {
-        Flux<Cuenta> cuentasChile = webChile.get().uri("/cliente/{id}", dni)
+        Flux<Cuenta> cuentasChile = webChile.get().uri("/cliente/{dni}", dni)
             .retrieve().bodyToFlux(Cuenta.class);
-        Flux<Cuenta> cuentasBolivia = webBolivia.get().uri("/cliente/{id}", dni)
+        Flux<Cuenta> cuentasBolivia = webBolivia.get().uri("/cliente/{dni}", dni)
             .retrieve().bodyToFlux(Cuenta.class);
         Flux<Cuenta> cuentasPeru = cuentaService.findAllByClienteDNI(dni);
 

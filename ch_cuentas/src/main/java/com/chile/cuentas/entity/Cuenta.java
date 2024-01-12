@@ -13,5 +13,6 @@ public class Cuenta {
     private String tipo;
     private double saldo;
     private String cliente;
+    private String clienteDNI;
     
 }

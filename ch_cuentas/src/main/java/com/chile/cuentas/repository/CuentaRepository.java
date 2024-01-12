@@ -10,6 +10,6 @@ import reactor.core.publisher.Flux;
 @Repository
 public interface CuentaRepository extends ReactiveMongoRepository<Cuenta, String>{
 
-    Flux<Cuenta> findAllByCliente(String id);
+    Flux<Cuenta> findAllByClienteDNI(String id);
     
 }

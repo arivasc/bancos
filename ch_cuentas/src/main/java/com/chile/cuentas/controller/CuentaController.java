@@ -43,20 +43,20 @@ public class CuentaController {
         return cuentaService.findAll();
     }
 
-    @GetMapping("/cliente/{id}")
+    @GetMapping("/cliente/{dni}")
     @ResponseStatus(HttpStatus.OK)
-    public Flux<Cuenta> findAllByCliente(@PathVariable String id) {
-        return cuentaService.findAllByCliente(id);
+    public Flux<Cuenta> findAllByCliente(@PathVariable String dni) {
+        return cuentaService.findAllByClienteDNI(dni);
     }
 
-    @GetMapping("/cliente/{id}/all}")
+    @GetMapping("/cliente/{dni}/all}")
     @ResponseStatus(HttpStatus.OK)
-    public Flux<Cuenta> findAllChile(@PathVariable String id) {
-        Flux<Cuenta> cuentasBolivia = webBolivia.get().uri("/cliente/{id}", id)
+    public Flux<Cuenta> findAllChile(@PathVariable String dni) {
+        Flux<Cuenta> cuentasBolivia = webBolivia.get().uri("/cliente/{dni}", dni)
             .retrieve().bodyToFlux(Cuenta.class);
-        Flux<Cuenta> cuentasPeru = webPeru.get().uri("/cliente/{id}", id)
+        Flux<Cuenta> cuentasPeru = webPeru.get().uri("/cliente/{dni}", dni)
             .retrieve().bodyToFlux(Cuenta.class);
-        Flux<Cuenta> cuentasChile = cuentaService.findAllByCliente(id);
+        Flux<Cuenta> cuentasChile = cuentaService.findAllByClienteDNI(dni);
 
         return Flux.merge(cuentasChile, cuentasPeru, cuentasBolivia);
     }

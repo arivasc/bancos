@@ -40,10 +40,6 @@ public class CuentaService {
         });
     }
 
-    public Flux<Cuenta> findAllByCliente(String id) {
-        return cuentaRepository.findAllByCliente(id);
-    }
-
     public Flux<Cuenta> findAllByClienteDNI(String dni) {
         return cuentaRepository.findAllByClienteDNI(dni);
     }

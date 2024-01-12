@@ -40,9 +40,8 @@ public class CuentaService {
         });
     }
 
-    public Flux<Cuenta> findAllByCliente(String id) {
-        // TODO Auto-generated method stub
-        return cuentaRepository.findAllByCliente(id);
+    public Flux<Cuenta> findAllByClienteDNI(String dni) {
+        return cuentaRepository.findAllByClienteDNI(dni);
     }
 
 }
